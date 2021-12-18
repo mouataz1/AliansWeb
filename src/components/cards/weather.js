@@ -1,46 +1,39 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import data from "bootstrap/js/src/dom/data";
+import WeatherData from "./weatherData";
+
+
 
 function Weather() {
+    const [weath, setWeather] = useState([]);
+    const [search, setSearch] = useState('')
+
+    useEffect(() => {
+
+        axios.get('http://api.openweathermap.org/data/2.5/weather?q=Oujda,ma&appid=981e5f48d92d8ff3d1c8aa06898c7d23')
+            .then(res => {
+                setWeather(res.data);
+                console.log(res.data)
+
+            }).catch(error => alert("eroor weather !!"));
+    }, [])
     return(
 
                 <div className="container p-0">
 
                     <div className="row d-flex  ">
                         <div className="">
-
-                            <div className="card " style={{color: '#ffff', borderRadius: '5px', heght: '100px', backgroundColor: '#554BC5'}}>
-                                <div className="card-body ">
-
-                                    <div className="d-flex">
-                                        <h6 className="flex-grow-1">Warsaw</h6>
-                                        <h6>15:07</h6>
-                                    </div>
-
-                                    <div className="d-flex flex-column text-center ">
-                                        <h3 className="display-4 mb-0 font-weight-bold"
-                                            style={{color: '#1C2331', fontSize: '20px'}}> 13°C </h3>
-                                        <span className="small" style={{color: '#868B94'}}>Stormy</span>
-                                    </div>
-
-                                    <div className="d-flex align-items-center">
-                                        <div className="flex-grow-1" style={{fontSize: '1rem'}}>
-                                            <div><i className="fas fa-wind fa-fw" style={{color: '#868B94'}}></i> <span
-                                                className="ms-1"> 40 km/h </span></div>
-                                            <div><i className="fas fa-tint fa-fw" style={{color: '#868B94'}}></i> <span
-                                                className="ms-1"> 84% </span></div>
-                                            <div><i className="fas fa-sun fa-fw" style={{color: '#868B94'}}></i> <span
-                                                className="ms-1"> 0.2h </span></div>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.png"
-                                                width="100px"/>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                          <WeatherData
+                              city={weath.name}
+                             // time={weather.}
+                              temirature={weath.temp}
+                              state={weath.feels_like}
+                              image={weath.icon}
+                              wind={weath.speed}
+                              humidity={weath.humidity}
+                          />
 
                         </div>
                     </div>
