@@ -14,7 +14,7 @@ function Weather() {
         await axios.get('http://api.openweathermap.org/data/2.5/weather?q=Oujda,ma&appid=981e5f48d92d8ff3d1c8aa06898c7d23')
             .then(res => {
                 setDatax({city: res.data.name, temp: res.data.main.temp, state: res.data.main.feels_like, icon: res.data.weather[0].icon, wind: res.data.wind.speed, humidity: res.data.main.humidity});
-                console.log(res.data)
+                //console.log(res.data)
 
             }).catch(error => alert("eroor weather !!"));
     }, [])
