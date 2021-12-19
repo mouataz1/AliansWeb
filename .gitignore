@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/AliansWebBackend/my-project/node_modules
+/AliansWeb/node_modules
 /.pnp
 .pnp.js
 
