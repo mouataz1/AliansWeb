@@ -7,14 +7,13 @@ import WeatherData from "./weatherData";
 
 
 function Weather() {
-    const [weath, setWeather] = useState([]);
+    const [datax, setDatax] = useState({});
     const [search, setSearch] = useState('')
+    useEffect(async () => {
 
-    useEffect(() => {
-
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=Oujda,ma&appid=981e5f48d92d8ff3d1c8aa06898c7d23')
+        await axios.get('http://api.openweathermap.org/data/2.5/weather?q=Oujda,ma&appid=981e5f48d92d8ff3d1c8aa06898c7d23')
             .then(res => {
-                setWeather(res.data);
+                setDatax({city: res.data.name, temp: res.data.main.temp, state: res.data.main.feels_like, icon: res.data.weather[0].icon, wind: res.data.wind.speed, humidity: res.data.main.humidity});
                 console.log(res.data)
 
             }).catch(error => alert("eroor weather !!"));
@@ -26,13 +25,12 @@ function Weather() {
                     <div className="row d-flex  ">
                         <div className="">
                           <WeatherData
-                              city={weath.name}
-                             // time={weather.}
-                              temirature={weath.temp}
-                              state={weath.feels_like}
-                              image={weath.icon}
-                              wind={weath.speed}
-                              humidity={weath.humidity}
+                              city={datax.city}
+                              temirature={datax.temp}
+                              state={datax.state}
+                              image={datax.icon}
+                              wind={datax.wind}
+                              humidity={datax.humidity}
                           />
 
                         </div>

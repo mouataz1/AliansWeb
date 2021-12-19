@@ -27,8 +27,8 @@ const WeatherData = ({city, time, temirature, state, image, wind, humidity}) => 
                             className="ms-1"> {humidity}% </span></div>
                     </div>
                     <div>
-                        <img
-                            src={image} width="100px"/>
+                        <i
+                            className={image} width="100px"/>
                     </div>
                 </div>
 
